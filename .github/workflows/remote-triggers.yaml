@@ -1,0 +1,16 @@
+name: Trigger Remotely
+
+on:
+  repository_dispatch:
+    types: [my-trigger]  
+
+jobs:
+  vsm-build:
+    runs-on: [ubuntu]  
+
+    steps:
+      - name: Build Promotion
+        run: |
+          TAG_NAME=${{ github.event.client_payload.image_tag }}
+          echo "${TAG_NAME}"    
+          
